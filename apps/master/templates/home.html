@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block konten %}
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <div class="text-center" data-aos="fade-right" data-aos-duration="500">
+      <img src="{{ guru.foto.url }}" class="foto">
+      <h3 class="mt-4"><span class="text-muted">halo,</span> <span class="shadow-text">{{ guru.nama }}</span></h3>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-md-6">
+    <div class="card shadow-solid mb-5" data-aos="zoom-in" data-aos-duration="600">
+      <div class="card-header bg-green text-center">
+        <p class="h4 m-0"><span class="oi oi-person"></span> Profil</p>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover m-0">
+            <tr>
+              <td>NIP</td>
+              <td>:</td>
+              <td class="text-muted">{{ guru.NIP }}</td>
+            </tr>
+            <tr>
+              <td>gender</td>
+              <td>:</td>
+              <td class="text-muted">{% ifequal guru.gender 'L' %} Laki-laki {% else %} Perempuan {% endifequal %}</td>
+            </tr>
+            <tr>
+              <td>walikelas</td>
+              <td>:</td>
+              <td>
+                {% ifequal guru.walikelas '-' %}
+                -
+                {% else %}
+                <a class="text-muted" href="{% url 'myclass' %}">{{ guru.walikelas }}</a>
+                {% endifequal %}
+              </td>  
+            </tr>
+            <tr>
+              <td>SK</td>
+              <td>:</td>
+              <td class="text-muted">{{ guru.tahun_masuk }}</td>
+            </tr>
+            <tr>
+              <td>kelompok</td>
+              <td>:</td>
+              <td class="text-muted">{{ kelompok }}</td>
+            </tr>
+            <tr>
+              <td>email</td>
+              <td>:</td>
+              <td class="text-muted">{{ request.user.email }}</td>
+            </tr>
+            <tr>
+              <td>user group</td>
+              <td>:</td>
+              <td class="text-muted">{% if user.groups.all.0 %} Guru {{ user.groups.all.0|upper }} {% else %} ga punya grup 😢 {% endif %}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card shadow-solid mb-5" data-aos="zoom-in" data-aos-duration="600">
+      <div class="card-header bg-blue text-center">
+        <p class="h4 m-0"><span class="oi oi-chat"></span> Mengajar</p>
+      </div>
+      <div class="card-body p-0">
+        <ul class="list-group list-group-hover">
+          {% for ngajar in infoNgajar %}
+          <li class="list-group-item">
+            <div class="label-kelompok mr-3 bg-red prototype h5">{{ ngajar.mapel.kelompok }}</div>
+            {{ ngajar.mapel }}
+            <div class="text-muted">{{ ngajar.kelas }}</div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

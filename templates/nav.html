@@ -1,0 +1,52 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light bg-yellow shadow-solid mt-4 mb-5">
+  <a class="navbar-brand prototype shadow-text" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" class="logo-brand"> myClass.</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home' %}"><span class="oi oi-home"></span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'myclass' %}">KELAS</a>
+      </li>
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdownNilai" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          NILAI
+        </a>
+        <div class="dropdown-menu shadow-solid" aria-labelledby="dropdownNilai">
+          <a class="dropdown-item" href="#">Harian</a>
+          <a class="dropdown-item" href="#">Tengah Semester</a>
+          <a class="dropdown-item" href="#">Akhir Semester</a>
+          <a class="dropdown-item" href="#">Akhir Tahun</a>
+          <a class="dropdown-item" href="#">Sikap</a>
+          <a class="dropdown-item" href="#">Kehadiran</a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item"><span class="oi oi-loop-circular"></span> Arsip</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdownRapot" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+          RAPOT
+        </a>
+        <div class="dropdown-menu shadow-solid" aria-labelledby="dropdownRapot">
+          <a href="#" class="dropdown-item">Tengah Semester</a>
+          <a href="#" class="dropdown-item">Akhir Semester</a>
+          <a href="#" class="dropdown-item">Kenaikan Kelas</a>
+        </div>
+      </li>
+    </ul>
+    <span class="navbar-text text-dark">
+      {% ifequal user.groups.all.0.name 'mapel' %}
+      {{ user.first_name }} {{ user.last_name }} / <a href="{% url 'logout' %}">Logout</a>
+      {% else %}
+      {{ user }} / <a href="{% url 'logout' %}">Logout</a>
+      {% endifequal %}
+    </span>
+  </div>
+</nav>

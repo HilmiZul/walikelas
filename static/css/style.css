@@ -1,0 +1,218 @@
+/* 
+ * style.css
+ * myClass
+ * 
+ * May 9, 2021
+ * Zul Hilmi
+ * https://github.com/hilmizul
+ */
+@font-face {
+  font-family: 'Prototype';
+  src: url('font/Prototype.ttf');
+}
+@font-face {
+  font-family: 'Rockwell';
+  src: url('font/Rockwell.ttc');
+}
+
+body {
+  /* background-color: #fdfeea; */
+  background: #fdfeea url('../images/paper-colorful.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Rockwell';
+}
+
+/* .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+  background-color: #E6DCDB;
+} */
+
+.prototype {
+  font-family: 'Prototype';
+}
+.rockwell {
+  font-family: 'Rockwell';
+}
+
+.card a, a:hover {
+  color: rgb(58, 58, 58);
+  text-decoration: underline;
+}
+
+.card {
+  background-color: #fdfffa;
+  border-radius: 7px;
+  border: 2px solid rgb(58, 58, 58);
+}
+.card .card-header {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.btn {
+  box-shadow: 5px 5px 0px rgb(58, 58, 58);
+  transition: all .1s ease-in-out;
+  border: 2px solid rgb(58, 58, 58);
+  border-radius: 5px;
+}
+
+.btn:hover {
+  box-shadow: 2.5px 2.5px 0px rgb(58, 58, 58);
+  transform: scale(.9, .9);
+  border: 2px solid rgb(58, 58, 58);
+}
+
+.btn-green, .btn-green:hover {
+  background-color: #B0DACC;
+  color: rgb(58, 58, 58);
+}
+.btn-blue, .btn-blue:hover {
+  background-color: #8BCBDE;
+  color: rgb(58, 58, 58);
+}
+.btn-yellow, .btn-yellow:hover {
+  background-color: #ffcc66;
+  color: rgb(58, 58, 58);
+}
+.btn-red, .btn-red:hover {
+  /* background-color: #ce7768; */
+  background-color: #ff9897;
+  color: rgb(58, 58, 58);
+}
+
+.shadow-solid {
+  box-shadow: 10px 10px 0px rgb(58, 58, 58);
+}
+
+table.table-bordered {
+  border: 2px solid rgb(58, 58, 58);
+  border-collapse: collapse;
+}
+
+.alert-green, .bg-green {
+  background-color: #B0DACC;
+  color: rgb(58, 58, 58);
+}
+.alert-blue, .bg-blue {
+  /* background-color: #2ca4c9; */
+  background-color: #8BCBDE;
+  color: rgb(58, 58, 58);
+}
+.alert-yellow, .bg-yellow {
+  background-color: #ffcc66;
+  color: rgb(58, 58, 58);
+}
+.alert-red, .bg-red {
+  background-color: #ff9897;
+  color: rgb(58, 58, 58);
+}
+
+.navbar {
+  border-radius: 7px;
+  border: 2px solid rgb(58, 58, 58);
+}
+
+.dropdown-item:hover {
+  background-color: #ffcc66;
+  color: rgb(58, 58, 58);
+}
+.dropdown-menu {
+  top: 120%;
+  margin-bottom: 10px;
+  border: 1px solid rgb(58, 58, 58);
+}
+
+.shadow-text {
+  -webkit-filter: drop-shadow(10px 10px 0 rgb(58, 58, 58));
+  filter: drop-shadow(2px 2px 0 rgba(58, 58, 58, .3));
+}
+.logo {
+  width: 130px;
+  -webkit-filter: drop-shadow(10px 10px 0 rgb(58, 58, 58));
+  filter: drop-shadow(10px 10px 0 rgb(58, 58, 58))
+}
+.logo-brand {
+  width: 30px;
+}
+
+.form-control {
+  border: 2px solid rgb(58, 58, 58);
+  background-color: transparent;
+}
+.form-control:focus {
+  box-shadow: none;
+  border: 2px solid #8BCBDE;
+}
+
+.foto {
+  width: 200px;
+  height: 200px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 2px solid rgb(58, 58, 58);
+  padding: 5px;
+  object-fit: cover;
+  object-position: 0 30%;
+  box-shadow: 10px 10px 0 rgb(58, 58, 58);
+}
+.foto-siswa {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid rgb(58, 58, 58);
+  padding: 2px;
+  object-fit: cover;
+  object-position: 0 30%;
+  transition: all .3s ease-in-out;
+}
+.foto-siswa:hover {
+  transform: translate(-130%, 0) scale(3, 3);
+  border: none;
+}
+
+footer {
+  border-radius: 9px;
+  border: 1px solid rgb(58, 58, 58);
+  background-color: #fff;
+  color: rgb(58, 58, 58);
+}
+
+.list-group,
+.list-group-item {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background-color: transparent;
+}
+.list-group-item:hover {
+  background-color: rgba(0, 0, 0, .075);
+}
+
+summary {
+  color: rgb(58, 58, 58);
+  display: block;
+  border-bottom: 1px solid rgb(58, 58, 58);
+  padding-block: 12px;
+}
+summary:hover {
+  background-color: rgba(0, 0, 0, .075);
+}
+@keyframes details-show {
+  from {
+    opacity:0;
+    transform: var(--details-translate, translateY(-0.9em));
+  }
+}
+details[open] > *:not(summary) {
+  animation: details-show .2s ease-in-out;
+}
+
+.label-kelompok {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  float: left;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
