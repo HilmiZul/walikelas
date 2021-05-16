@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     'apps.master',
     'apps.leger',
+    'apps.pengaturan',
+
     'rest_framework',
     'corsheaders',
 ]

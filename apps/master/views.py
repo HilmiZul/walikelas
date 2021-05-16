@@ -29,8 +29,12 @@ def home(request):
 def myclass(request):
   rombel = Rombel.objects.filter(walikelas__email=request.user.email)
   guru = Guru.objects.get(email=request.user.email)
+  L = Rombel.objects.filter(walikelas__email=request.user.email, siswa__gender='L').count()
+  P = Rombel.objects.filter(walikelas__email=request.user.email, siswa__gender='P').count()
   context = {
     'rombel': rombel,
     'guru': guru,
+    'L': L,
+    'P': P
   }
   return render(request, 'kelas.html', context)

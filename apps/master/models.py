@@ -1,4 +1,5 @@
 from django.db import models
+from apps.pengaturan.models import Umum
 
 class ProgramKeahlian(models.Model):
   nama = models.CharField(max_length=30)
@@ -108,6 +109,7 @@ class Rombel(models.Model):
   siswa = models.ForeignKey(Siswa, on_delete=models.CASCADE)
   walikelas = models.ForeignKey(Guru, on_delete=models.CASCADE)
   tahun = models.IntegerField()
+  # tahun = models.ForeignKey(Umum, on_delete=models.CASCADE, null=True)
   arsip = models.BooleanField(default=False)
 
   def __str__(self):

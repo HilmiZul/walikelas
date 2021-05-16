@@ -1,5 +1,6 @@
 from django.db import models
-from apps.master.models import Mapel, Siswa, Kelas
+from apps.master.models import Mapel, Siswa, Kelas, ProgramKeahlian
+from apps.pengaturan.models import Umum
 
 class Nilai(models.Model):
   JUDUL_CHOICES = (
@@ -13,6 +14,8 @@ class Nilai(models.Model):
   tanggal = models.DateTimeField(auto_now_add=True, null=True)
   mata_pelajaran = models.ForeignKey(Mapel, on_delete=models.CASCADE, null=True)
   kelas = models.ForeignKey(Kelas, on_delete=models.CASCADE, null=True)
+  # semester = models.ForeignKey(Umum, on_delete=models.CASCADE, null=True)
+  # kompetensi_keahlian = models.ForeignKey(ProgramKeahlian, on_delete=models.CASCADE, null=True)
   siswa = models.ForeignKey(Siswa, on_delete=models.CASCADE)
   pengetahuan = models.IntegerField()
   keterampilan = models.IntegerField()
