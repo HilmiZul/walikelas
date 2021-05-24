@@ -1,5 +1,5 @@
 from django.db import models
-from apps.master.models import Mapel, Siswa, Kelas, ProgramKeahlian
+from apps.master.models import Mapel, Kelas, ProgramKeahlian, Siswa
 from apps.pengaturan.models import Umum
 
 class Nilai(models.Model):
@@ -12,11 +12,11 @@ class Nilai(models.Model):
   )
   judul = models.CharField(max_length=30, choices=JUDUL_CHOICES, null=True)
   tanggal = models.DateTimeField(auto_now_add=True, null=True)
-  mata_pelajaran = models.ForeignKey(Mapel, on_delete=models.CASCADE, null=True)
-  kelas = models.ForeignKey(Kelas, on_delete=models.CASCADE, null=True)
-  # semester = models.ForeignKey(Umum, on_delete=models.CASCADE, null=True)
-  # kompetensi_keahlian = models.ForeignKey(ProgramKeahlian, on_delete=models.CASCADE, null=True)
-  siswa = models.ForeignKey(Siswa, on_delete=models.CASCADE)
+  mata_pelajaran = models.ForeignKey(Mapel, on_delete=models.CASCADE, null=True)  # diambil dari Guru Mapel yang sedang login 
+  #kkm = models.IntegerField(null=True)                                            # diisi manual / dari Mapel?
+  kelas = models.ForeignKey(Kelas, on_delete=models.CASCADE, null=True)           # diinput dari obj Kelas
+  semester = models.ForeignKey(Umum, on_delete=models.CASCADE, null=True)         # diambil dari pengaturan Umum
+  siswa = models.ForeignKey(Siswa, on_delete=models.CASCADE)                      # dari obj Siswa
   pengetahuan = models.IntegerField()
   keterampilan = models.IntegerField()
 

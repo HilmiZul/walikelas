@@ -1,3 +1,4 @@
+from django.db.models import fields
 from .models import *
 from rest_framework import serializers
 
@@ -45,3 +46,9 @@ class GuruMapelSerializer(serializers.ModelSerializer):
       'id', 'guru_id', 'guru_nama', 'kelas_id', 'foto',
       'kelas_nama', 'mapel_id', 'mapel_nama', 'kelompok', 'email'
     ]
+
+
+class MapelSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Mapel
+    fields = '__all__'

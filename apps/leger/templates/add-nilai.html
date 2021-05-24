@@ -2,54 +2,54 @@
 
 
 {% block konten %}
-<div class="card shadow-solid mb-5">
-  <form action="" method="post">
-    {% csrf_token %}
-    <div class="card-header bg-green">
-      <h2 class="text-dark">Nilai Rapot &bull; Semester 4 &bull; XI.RPL-3</h2>
-    </div>
-    <div class="card-body table-responsive">
-      <div class="mb-3">
-        <p>Pemrograman Berorientasi Objek</p>
-        <p>KKM: 75</p>
-        <p>Jumlah Siswa: {{ data|length }}</p>
+  <div class="card shadow-solid mb-5">
+    <form action="" method="post">
+      {% csrf_token %}
+      <div class="card-header bg-green">
+        <h2 class="text-dark">Nilai Rapot &bull; Semester 4 &bull; XI.RPL-3</h2>
       </div>
-      {% if d_p %}
-      {% for s in d_p %}
-      <div>P: {{ s }}</div>
-      {% endfor %}
-      {% endif %}
-      <table class="table table-striped table-hover">
-        <thead>
-          <tr align="center">
-            <th>NO.</th>
-            <th>NAMA</th>
-            <th>L/P</th>
-            <th>PENGETAHUAN</th>
-            <th>KETERAMPILAN</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for d in data %}
-          <tr>
-            <input type="hidden" name="siswa" value="{{ d.siswa.id }}">
-            <td align="center">{{ forloop.counter }}.</td>
-            <td width="70%">{{ d.siswa }}</td>
-            <td align="center" width="10%">{{ d.siswa.gender }} </td>
-            <td align="center" width="10%">
-              <input type="number" name="pengetahuan" class="form-control" value="0" min="0" max="100" required>
-            </td>
-            <td align="center" width="10%">
-              <input type="number" name="keterampilan" class="form-control" value="0" min="0" max="100" required>
-            </td>
-          </tr>
+      <div class="card-body table-responsive">
+        <div class="mb-3">
+          <p>Pemrograman Berorientasi Objek</p>
+          <p>KKM: 75</p>
+          <p>Jumlah Siswa: {{ data|length }}</p>
+        </div>
+        {% if d_p %}
+          {% for s in d_p %}
+            <div>P: {{ s }}</div>
           {% endfor %}
-        </tbody>
-      </table>
-    </div>
-    <div class="card-footer text-right">
-      <button type="submit" class="btn btn-green btn-lg">Kirim</button>
-    </div>
-  </form>
-</div>
+        {% endif %}
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr align="center">
+              <th>NO.</th>
+              <th>NAMA</th>
+              <th>L/P</th>
+              <th>PENGETAHUAN</th>
+              <th>KETERAMPILAN</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for d in data %}
+              <tr>
+                <input type="hidden" name="siswa" value="{{ d.siswa.id }}">
+                <td align="center">{{ forloop.counter }}.</td>
+                <td width="70%">{{ d.siswa }}</td>
+                <td align="center" width="10%">{{ d.siswa.gender }} </td>
+                <td align="center" width="10%">
+                  <input type="number" name="pengetahuan" class="form-control" value="0" min="0" max="100" required>
+                </td>
+                <td align="center" width="10%">
+                  <input type="number" name="keterampilan" class="form-control" value="0" min="0" max="100" required>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer text-right">
+        <button type="submit" class="btn btn-green btn-lg">Kirim</button>
+      </div>
+    </form>
+  </div>
 {% endblock %}

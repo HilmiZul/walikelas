@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block konten %}
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="text-center mb-5" data-aos="fade-left" data-aos-duration="500">
+        {% if guru.foto %}
+          <img src="{{ guru.foto.url }}" class="foto">
+        {% else %}
+          <img src="/media/avatar-default.png" class="foto">
+        {% endif %}
+      </div>
+      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical"
+        data-aos="fade-up">
+        <a class="nav-link active" id="v-pills-profil-tab" data-toggle="pill" href="#profil" role="tab"
+          aria-controls="profil" aria-selected="true">Profil <i class="fa fa-arrow-right float-right"></i></a>
+        <a class="nav-link" id="v-pills-mapel-tab" data-toggle="pill" href="#mapel" role="tab"
+          aria-controls="mapel" aria-selected="false">Mapel <i class="fa fa-arrow-right float-right"></i></a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="tab-content" id="v-pills-tabContent">
+        <div class="tab-pane fade show active" id="profil" role="tabpanel" aria-labelledby="v-pills-profil-tab">
+          <div class="card shadow-solid mb-5">
+            <div class="card-header bg-green text-center">
+              <p class="h5 m-0">Ubah Profil</p>
+            </div>
+            <div class="card-body">
+              {% for message in messages %}
+                {% if message %}
+                  <div class="alert alert-info alert-dismissible show" role="alert" data-aos="zoom-in">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                {% endif %}
+              {% endfor %}
+              <form action="{% url 'pengaturan_profil' guru.id %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <div class="form-group text-center">
+                  <button class="btn btn-green" type="submit"><i class="fa fa-check"></i> Simpan</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="mapel" role="tabpanel" aria-labelledby="v-pills-mapel-tab">
+          <div class="card shadow-solid mb-5" data-aos="zoom-in">
+            <div class="card-header bg-green text-center">
+              <p class="h5 m-0">Matapelajaran</p>
+            </div>
+            <div class="card-body">
+              <div class="alert alert-info"><i class="fa fa-lightbulb fa-2x"></i> Tentukan nilai KKM untuk setiap
+                Matapelajaran yang diampu.</div>
+              <form @submit.prevent="submit">
+                <table class="table table-striped">
+                  <thead>
+                    <tr align="center">
+                      <th>MATAPELAJARAN</th>
+                      <th width="20%">KKM</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>B.Indonesia</td>
+                      <td>
+                        <input type="number" class="form-control" v-model="kkm" placeholder="contoh: 75" required>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Matematika</td>
+                      <td>
+                        <input type="number" class="form-control" v-model="kkm" placeholder="contoh: 75" required>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="form-group text-center">
+                  <button class="btn btn-green"><i class="fa fa-check"></i> Simpan</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

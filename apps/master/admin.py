@@ -9,7 +9,7 @@ class GuruAdmin(admin.ModelAdmin):
 
 class MapelAdmin(admin.ModelAdmin):
   list_display = ['nama', 'kelompok', 'kkm']
-  list_filter = ('kelompok', 'keterangan',)
+  list_filter = ('kelompok', 'keterangan', 'kompetensi_keahlian')
   list_per_page = 20
 
 class SiswaAdmin(admin.ModelAdmin):

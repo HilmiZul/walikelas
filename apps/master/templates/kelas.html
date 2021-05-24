@@ -1,65 +1,86 @@
 {% extends 'base.html' %}
 
 {% block konten %}
-<div class="row">
-  <div class="col-md-3">
-    <div class="text-center" data-aos="fade-left" data-aos-duration="500">
-      <img src="{{ guru.foto.url }}" class="foto">
-      <p class="h4 mt-4">{{ guru.nama }}</p>
-      <!-- <p class="text-muted"><em>(Anda Walikelas mereka)</em></p> -->
-      <div class="container mb-3 text-muted">
-        <div class="row">
-          <div class="col p-2 border-right border-bottom">
-            <!-- <i class="fa fa-male fa-2x"></i> -->
-            <div class="h">{{ L }}</div>
-            Laki-laki
+  <div class="row">
+    <div class="col-md-3">
+      <div class="text-center" data-aos="fade-left" data-aos-duration="500">
+        {% if guru.foto %}
+          <img src="{{ guru.foto.url }}" class="foto">
+        {% else %}
+          <img src="/media/avatar-default.png" class="foto">
+        {% endif %}
+        <p class="h4 mt-4">{{ guru.nama }}</p>
+        <!-- <p class="text-muted"><em>(Anda Walikelas mereka)</em></p> -->
+        <div class="container mb-3 text-muted">
+          <div class="row">
+            <div class="col p-2 border-right border-bottom">
+              <!-- <i class="fa fa-male fa-2x"></i> -->
+              <div class="h5">{{ L }}</div>
+              Laki-laki
+            </div>
+            <div class="col p-2 border-bottom">
+              <!-- <i class="fa fa-female fa-2x"></i> -->
+              <div class="h5">{{ P }}</div>
+              Perempuan
+            </div>
           </div>
-          <div class="col p-2 border-bottom">
-            <!-- <i class="fa fa-female fa-2x"></i> -->
-            <div class="h5">{{ P }}</div>
-            Perempuan
+          <div class="row mt-2 border-bottom">
+            <div class="col p-2">
+              <!-- <i class="fa fa-users fa-2x"></i> -->
+              <div class="h5">{{ rombel|length }}</div>
+              Jumlah Siswa
+            </div>
           </div>
-        </div>
-        <div class="row mt-2">
-          <div class="col p-2">
-            <!-- <i class="fa fa-users fa-2x"></i> -->
-            <div class="h5">{{ rombel|length }}</div>
-            Jumlah Siswa
+          <div class="row">
+            <div class="col p-3 border-right">
+              <div>{{ pengaturan.tahun_ajaran }}/{{ pengaturan.tahun_ajaran|add:"+1" }}</div>
+            </div>
+            <div class="col p-3">
+              <div>{{ semester }} / {{ pengaturan.semester }}</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="col-md-9">
-    <div class="card shadow-solid mb-5" data-aos="fade-up" data-aos-duration="700">
-      <div class="card-header bg-green text-center">
-        <p class="h5 m-0">My Class: {{ guru.walikelas }}</p>
-      </div>
-      <div class="card-body">
-        {% for data in rombel %}
-        <details data-aos="fade-up">
-          <summary class="pl-2">
-            {% if data.siswa.foto %}
-            <img src="/media/{{ data.siswa.foto }}" class="foto-siswa mr-2">
+    <div class="col-md-9">
+      <div class="card shadow-solid mb-5" data-aos="fade-up" data-aos-duration="700">
+        <div class="card-header bg-green text-center">
+          <p class="h5 m-0">My Class:
+            {% if guru.walikelas %}
+              {{ guru.walikelas }}
             {% else %}
-            <img src="/media/avatar-default.png" class="foto-siswa mr-2">
+              Kamu bukan Walikelas :(
             {% endif %}
-            {{ data.siswa.nama }}
-          </summary>
-          <ul class="list-group">
-            <li class="list-group-item text-muted">
-              <div>NIS: {{ data.siswa.NIS }}</div>
-              <div>gender: {% ifequal data.siswa.gender 'L' %} Laki-laki {% else %} Perempuan {% endifequal %}</div>
-              <div>tahuna ajaran: {{ data.tahun }}/{{ data.tahun|add:"+1" }}</div>
-              <div>tahun masuk: {{ data.siswa.tahun_masuk }}</div>
-              <div>kompetensi keahlian: {{ data.siswa.program_keahlian }}</div>
-            </li>
-          </ul>
-        </details>
-        {% endfor %}
-        <!-- <div class="text-muted text-right mt-4">Ada {{ rombel|length }} Siswa di Kelas {% ifequal guru.gender 'L' %} Bapak {% else %} Ibu {% endifequal %}🙂</div> -->
+          </p>
+        </div>
+        <div class="card-body">
+          {% if rombel %}
+            {% for data in rombel %}
+              <details data-aos="fade-up">
+                <summary class="pl-2">
+                  {% if data.siswa.foto %}
+                    <img src="/media/{{ data.siswa.foto }}" class="foto-siswa mr-2">
+                  {% else %}
+                    <img src="/media/avatar-default.png" class="foto-siswa mr-2">
+                  {% endif %}
+                  {{ data.siswa.nama }}
+                </summary>
+                <ul class="list-group">
+                  <li class="list-group-item text-muted">
+                    <div>NIS: {{ data.siswa.NIS }}</div>
+                    <div>gender: {% ifequal data.siswa.gender 'L' %} Laki-laki {% else %} Perempuan {% endifequal %}</div>
+                    <div>tahun masuk: {{ data.siswa.tahun_masuk }}</div>
+                    <div>kompetensi keahlian: {{ data.siswa.program_keahlian }}</div>
+                  </li>
+                </ul>
+              </details>
+            {% endfor %}
+          {% else %}
+            <em>Tidak ada data siswa.</em>
+          {% endif %}
+          <!-- <div class="text-muted text-right mt-4">Ada {{ rombel|length }} Siswa di Kelas {% ifequal guru.gender 'L' %} Bapak {% else %} Ibu {% endifequal %}🙂</div> -->
+        </div>
       </div>
     </div>
   </div>
-</div>
 {% endblock %}

@@ -6,17 +6,21 @@
 </head>
 
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        {% include 'nav.html' %}
+  <div id="app">
+    <template>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            {% include 'nav.html' %}
+          </div>
+        </div>
+
+        {% block konten %}
+        {% endblock %}
+
+        {% include 'footer.html' %}
       </div>
-    </div>
-
-    {% block konten %}
-    {% endblock %}
-
-    {% include 'footer.html' %}
+    </template>
   </div>
 
   {% include 'js.html' %}

@@ -42,11 +42,20 @@ class Mapel(models.Model):
     ("Dasar Program Keahlian", "Dasar Program Keahlian"),
     ("Muatan Peminatan dan Kejuruan", "Muatan Peminatan dan Kejuruan"),
   )
-  nama = models.CharField(max_length=40)
+  KOMPETENSI_KEAHLIAN_CHOICES = (
+    ("Semua", "Semua"),
+    ("TKI", "TKI"),
+    ("RPL", "RPL"),
+    ("TKJ", "TKJ"),
+    ("TBSM", "TBSM"),
+  )
+  nama = models.CharField(max_length=50)
   alias = models.CharField(max_length=40, null=True)
-  kelompok = models.CharField(max_length=1, choices=KELOMPOK_CHOICES)
+  kelompok = models.CharField(max_length=2, choices=KELOMPOK_CHOICES)
   keterangan = models.CharField(max_length=29, choices=KETERANGAN_CHOICES, null=True)
   kkm = models.IntegerField()
+  alokasi_waktu = models.IntegerField(null=True)
+  kompetensi_keahlian = models.CharField(max_length=5, choices=KOMPETENSI_KEAHLIAN_CHOICES, null=True)
 
   def __str__(self):
     return self.nama
@@ -95,7 +104,7 @@ class Guru(models.Model):
   gender = models.CharField(max_length=1, choices=gender_choices)
   level = models.CharField(max_length=7, choices=LEVEL_CHOICES)
   walikelas = models.ForeignKey(Kelas, on_delete=models.CASCADE, blank=True, null=True)
-  tahun_masuk = models.DateField()
+  tahun_masuk = models.DateField(null=True)
   foto = models.ImageField(upload_to="guru/foto/", null=True, blank=True)
   email = models.EmailField(max_length=60, null=True)
   aktif = models.BooleanField(default=True)

@@ -10,9 +10,11 @@
       <li class="nav-item active">
         <a class="nav-link" href="{% url 'home' %}"><i class="fa fa-home"></i></a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'myclass' %}">KELAS</a>
-      </li>
+      {% ifequal user.groups.all.0.name 'walikelas' %}
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'myclass' %}">KELAS</a>
+        </li>
+      {% endifequal %}
       <li class="nav-item dropdown active">
         <a class="nav-link dropdown-toggle" href="#" id="dropdownNilai" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
@@ -23,31 +25,54 @@
           <a class="dropdown-item" href="#">Tengah Semester</a>
           <a class="dropdown-item" href="#">Akhir Semester</a>
           <a class="dropdown-item" href="#">Akhir Tahun</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Sikap <span class="text-muted">(Rapot)</span></a>
-          <a class="dropdown-item" href="#">Kehadiran <span class="text-muted">(Rapot)</span></a>
+          {% ifequal user.groups.all.0.name 'walikelas' %}
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Sikap <span class="text-muted">(Rapot)</span></a>
+            <a class="dropdown-item" href="#">Kehadiran <span class="text-muted">(Rapot)</span></a>
+          {% endifequal %}
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item"><span class="oi oi-loop-circular"></span> Arsip</a>
         </div>
       </li>
-      <li class="nav-item dropdown active">
-        <a class="nav-link dropdown-toggle" href="#" id="dropdownRapot" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-          RAPOT
-        </a>
-        <div class="dropdown-menu shadow-solid" aria-labelledby="dropdownRapot">
-          <a href="#" class="dropdown-item">Tengah Semester</a>
-          <a href="#" class="dropdown-item">Akhir Semester</a>
-          <a href="#" class="dropdown-item">Kenaikan Kelas</a>
-        </div>
-      </li>
+      {% ifequal user.groups.all.0.name 'walikelas' %}
+        <li class="nav-item dropdown active">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdownRapot" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            RAPOT
+          </a>
+          <div class="dropdown-menu shadow-solid" aria-labelledby="dropdownRapot">
+            <a href="#" class="dropdown-item">Tengah Semester</a>
+            <a href="#" class="dropdown-item">Akhir Semester</a>
+            <a href="#" class="dropdown-item">Kenaikan Kelas</a>
+          </div>
+        </li>
+      {% endifequal %}
+
+      {% if user.groups.all.0.name == 'kurikulum' %}
+        <li class="nav-item dropdown active">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdownRapot" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            PENGATURAN
+          </a>
+          <div class="dropdown-menu shadow-solid" aria-labelledby="dropdownRapot">
+            <a href="#" class="dropdown-item">IDENTITAS</a>
+            <a href="#" class="dropdown-item">UMUM</a>
+            <a href="#" class="dropdown-item">RAPOR</a>
+          </div>
+        </li>
+      {% elif user.groups.all.0.name == 'walikelas' %}
+        <li class="nav-item active">
+          <a href="{% url 'pengaturan_profil' guru.id %}" class="nav-link">PENGATURAN</a>
+        </li>
+      {% elif user.groups.all.0.name == 'mapel' %}
+        <li class="nav-item active">
+          <a href="{% url 'pengaturan_profil' guru.id %}" class="nav-link">PENGATURAN</a>
+        </li>
+      {% endif %}
     </ul>
     <span class="navbar-text text-dark">
-      {% ifequal user.groups.all.0.name 'mapel' %}
-      {{ user.first_name }} {{ user.last_name }} / <a href="{% url 'logout' %}">Logout</a>
-      {% else %}
+      <!-- {{ user.first_name }} {{ user.last_name }} / <a href="{% url 'logout' %}">Logout</a> -->
       {{ user }} / <a href="{% url 'logout' %}">Logout</a>
-      {% endifequal %}
     </span>
   </div>
 </nav>

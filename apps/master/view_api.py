@@ -19,3 +19,7 @@ class RombelViewset(viewsets.ModelViewSet):
 class GuruMapelViewset(viewsets.ModelViewSet):
   queryset = GuruMapel.objects.all()
   serializer_class = GuruMapelSerializer
+
+class MapelViewset(viewsets.ModelViewSet):
+  queryset = Mapel.objects.all()
+  serializer_class = MapelSerializer
