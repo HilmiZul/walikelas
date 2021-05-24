@@ -15,6 +15,7 @@ router.register('guru', GuruViewset)
 router.register('gurumapel', GuruMapelViewset)
 router.register('rombel', RombelViewset)
 router.register('siswa', SiswaViewset)
+router.register('mapel', MapelViewset)
 
 urlpatterns = [
   path('api/v1/', include(router.urls)),

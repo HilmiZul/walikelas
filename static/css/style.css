@@ -129,12 +129,19 @@ table.table-bordered {
   filter: drop-shadow(2px 2px 0 rgba(58, 58, 58, .3));
 }
 .logo {
-  width: 130px;
+  width: 10vh;
+  margin-top: 50px;
   -webkit-filter: drop-shadow(10px 10px 0 rgb(58, 58, 58));
   filter: drop-shadow(10px 10px 0 rgb(58, 58, 58))
 }
 .logo-brand {
   width: 30px;
+  /* position: absolute;
+  top: -25px;
+  left: -25px; */
+}
+.login {
+  margin-top: 100px;
 }
 
 .form-control {
@@ -147,8 +154,8 @@ table.table-bordered {
 }
 
 .foto {
-  width: 70%;
-  height: 70%;
+  width: 170px;
+  height: 170px;
   background-color: #fff;
   border-radius: 50%;
   border: 2px solid rgb(58, 58, 58);
@@ -225,4 +232,20 @@ details[open] > *:not(summary) {
 }
 .border-right {
   border-right: 2px solid #dee2de!important;
+}
+
+.nav .nav-link {
+  /* border-radius: 0; */
+  margin-bottom: 15px;
+  background-color: rgba(0, 0, 0, .075);
+  color: rgb(58, 58, 58);
+  box-shadow: 7px 7px 0px rgb(58, 58, 58);
+  border: 2px solid rgb(58, 58, 58);
+}
+.nav .nav-link.active {
+  background-color: #B0DACC;
+  color: rgb(58, 58, 58);
+  box-shadow: 3px 3px 0px rgb(58, 58, 58);
+  transform: scale(.98, .98);
+  transition: all .1s ease-in-out;
 }
