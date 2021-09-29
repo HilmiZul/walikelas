@@ -52,6 +52,11 @@ def myclass(request):
       semester = 3
     else:
       semester = 4
+  elif guru.walikelas.tingkat == 'XII':
+    if pengaturan.semester == 'Ganjil':
+      semester = 5
+    else:
+      semester = 6
   L = Rombel.objects.filter(walikelas__email=request.user.email, siswa__gender='L').count()
   P = Rombel.objects.filter(walikelas__email=request.user.email, siswa__gender='P').count()
   context = {
@@ -68,6 +73,7 @@ def myclass(request):
 @login_required(login_url=settings.LOGIN_URL)
 def pengaturan_profil(request, id):
   guru = Guru.objects.get(id=id)
+  pengaturan = Umum.objects.get(id=1)
   if request.POST:
     form = GuruForm(request.POST, request.FILES, instance=guru)
     if form.is_valid():
@@ -80,5 +86,6 @@ def pengaturan_profil(request, id):
     context = {
       'form': form,
       'guru': guru,
+      'pengaturan': pengaturan
     }
   return render(request, template, context)

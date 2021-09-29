@@ -17,6 +17,8 @@
           aria-controls="profil" aria-selected="true">Profil <i class="fa fa-arrow-right float-right"></i></a>
         <a class="nav-link" id="v-pills-mapel-tab" data-toggle="pill" href="#mapel" role="tab"
           aria-controls="mapel" aria-selected="false">Mapel <i class="fa fa-arrow-right float-right"></i></a>
+        <a class="nav-link" id="v-pills-nilai-tab" data-toggle="pill" href="#nilai" role="tab"
+          aria-controls="nilai" aria-selected="false">Nilai <i class="fa fa-arrow-right float-right"></i></a>
       </div>
     </div>
     <div class="col">
@@ -52,7 +54,7 @@
 
         <div class="tab-pane fade" id="mapel" role="tabpanel" aria-labelledby="v-pills-mapel-tab">
           <div class="card shadow-solid mb-5" data-aos="zoom-in">
-            <div class="card-header bg-green text-center">
+            <div class="card-header bg-blue text-center">
               <p class="h5 m-0">Matapelajaran</p>
             </div>
             <div class="card-body">
@@ -82,7 +84,59 @@
                   </tbody>
                 </table>
                 <div class="form-group text-center">
-                  <button class="btn btn-green"><i class="fa fa-check"></i> Simpan</button>
+                  <button class="btn btn-blue"><i class="fa fa-check"></i> Simpan</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="nilai" role="tabpanel" aria-labelledby="v-pills-nilai-tab">
+          <div class="card shadow-solid mb-5" data-aos="zoom-in">
+            <div class="card-header bg-red text-center">
+              <p class="h5 m-0">Pengaturan Nilai</p>
+            </div>
+            <div class="card-body">
+              <div class="alert alert-info"><i class="fa fa-lightbulb fa-2x"></i> Tentukan prosentase Nilai Akhir untuk Rapor</div>
+              <form @submit.prevent="submit">
+                <table class="table table-striped">
+                  <thead>
+                    <tr align="center">
+                      <th>JENIS NILAI</th>
+                      <th width="25%">PROSENTASE (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Harian</td>
+                      <td>
+                        <input type="number" class="form-control" placeholder="contoh: 20" required>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Tengah Semester</td>
+                      <td>
+                        <input type="number" class="form-control" placeholder="..." required>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Akhir Semester</td>
+                      <td>
+                        <input type="number" class="form-control" placeholder="..." required>
+                      </td>
+                    </tr>
+                    {% if pengaturan.semester == 'Genap' %}
+                    <tr>
+                      <td>Akhir Tahun</td>
+                      <td>
+                        <input type="number" class="form-control" placeholder="..." required>
+                      </td>
+                    </tr>
+                    {% endif %}
+                  </tbody>
+                </table>
+                <div class="form-group text-center">
+                  <button class="btn btn-red"><i class="fa fa-check"></i> Simpan</button>
                 </div>
               </form>
             </div>
